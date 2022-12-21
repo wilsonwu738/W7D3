@@ -30,5 +30,20 @@ module GoalApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.generators.system_tests = nil
+
+    config.generators do |g|
+      g.test_framework :rspec, # This line tells Rails to use RSpec for testing
+        :fixtures => false, # Fixtures are rails default way of creating objects for testing, we'll do most of these ourselves
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true, # Please note that I've set this line to true
+        :request_specs => false
+        g.fixture_replacement :factory_bot, :dir => "spec/factories"
+
+        # All of the other false values tell Rails not to auto generate tests for those types of files. We'll do these manually, but as you grow your Rails knowledge, you may want to switch this to have the files generated for you.
+        # When we talk about auto-generating, we're specifically referring to commands like 'rails g model' or 'rails g controller'. These commands will help us auto generate our models and controllers.
+    end
   end
 end
