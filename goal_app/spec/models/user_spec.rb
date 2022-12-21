@@ -55,7 +55,11 @@ RSpec.describe User, type: :model do
       FactoryBot.build(:user, password: 'abcdefgh')
     end
   end
-  
+
+  describe "make sure to have a session token" do
+    it ""
+  end
+
 
 
 
